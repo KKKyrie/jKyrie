@@ -1,3 +1,12 @@
+/*
+ *	封装cookie操作 cookieUtil
+ *	1.添加 setCookie
+ *	2.查询 getCookie
+ * 	3.删除 deleteCookie
+ *
+ *  @kyrieliu
+ */
+
 var cookieUtil = {
 
 	setCookie: function(name, value, expiresDays){
