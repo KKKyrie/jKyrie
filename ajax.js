@@ -15,60 +15,60 @@
 
  function ajax(opts) {
 
- 	//默认参数
- 	var defaults = {
- 		method: "GET",
- 		url: "",
- 		data: "",
- 		async: true,
- 		// cache: true,
- 		contentType: "application/x-www-form-urlencoded",
- 		success: function() {},
- 		error: function() {}
- 	};
+   //默认参数
+   var defaults = {
+     method: "GET",
+     url: "",
+     data: "",
+     async: true,
+     // cache: true,
+     contentType: "application/x-www-form-urlencoded",
+     success: function() {},
+     error: function() {}
+   };
 
- 	//用户参数覆盖默认参数
- 	for (var key in opts) {
- 		defaults[key] = opts[key];
- 	}
+   //用户参数覆盖默认参数
+   for (var key in opts) {
+     defaults[key] = opts[key];
+   }
 
- 	//处理data（object => string）
- 	if (typeof(defaults.data) === 'object') {
- 		var str = "";
- 		for (var key in defaults.data) {
- 			str = key + "=" + defaults.data[key] + "&";
- 		}
- 		defaults.data = str.substring(0, str.length - 1);
- 	}
+   //处理data（object => string）
+   if (typeof(defaults.data) === 'object') {
+     var str = "";
+     for (var key in defaults.data) {
+       str += key + "=" + defaults.data[key] + "&";
+     }
+     defaults.data = str.substring(0, str.length - 1);
+   }
 
- 	//处理方法
- 	defaults.method = defaults.method.toUpperCase();
+   //处理方法
+   defaults.method = defaults.method.toUpperCase();
 
 
- 	//处理url
- 	if (defaults.method === "GET" && defaults.data) {
- 		url += "?" + defaults.data;
- 	}
+   //处理url
+   if (defaults.method === "GET" && defaults.data) {
+     url += "?" + defaults.data;
+   }
 
- 	//ajax
- 	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+   //ajax
+   var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 
- 	xhr.open(defaults.method, defaults.url, defaults.async);
+   xhr.open(defaults.method, defaults.url, defaults.async);
 
- 	if (defaults.method === "GET") {
- 		xhr.send(null);
- 	} else if (defaults.method === "POST") {
- 		xhr.setRequestHeader("Content-type", defaults.contentType);
- 		xhr.send(defaults.data);
- 	}
+   if (defaults.method === "GET") {
+     xhr.send(null);
+   } else if (defaults.method === "POST") {
+     xhr.setRequestHeader("Content-type", defaults.contentType);
+     xhr.send(defaults.data);
+   }
 
- 	xhr.onreadystatechange = function() {
- 		if (xhr.readyState === 4) {
- 			if (xhr.status === 200) {
- 				defaults.success.call(xhr, xhr.responseText);
- 			} else {
- 				defaults.error();
- 			}
- 		}
- 	};
+   xhr.onreadystatechange = function() {
+     if (xhr.readyState === 4) {
+       if (xhr.status === 200) {
+         defaults.success.call(xhr, xhr.responseText);
+       } else {
+         defaults.error();
+       }
+     }
+   };
  }
