@@ -28,10 +28,10 @@ var cookieUtil = {
 
 		//是最后一个键值对（末尾没有分号）
 		if (end === -1) {
-			end = document.cookie.length;
+			end = cookies.length;
 		}
 
-		return unescape(document.cookie.substring(start, end));
+		return unescape(cookies.substring(start, end));
 
 	},
 
