@@ -47,7 +47,7 @@
 
    //处理url
    if (defaults.method === "GET" && defaults.data) {
-     url += "?" + defaults.data;
+     defaults.url += "?" + defaults.data;
    }
 
    //ajax
