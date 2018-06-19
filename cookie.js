@@ -12,7 +12,7 @@ var cookieUtil = {
 	setCookie: function(name, value, expiresDays) {
 		var date = new Date();
 		date.setDate(date.getDate() + expiresDays);
-		document.cookie = name + "=" + escape(value) + ";" + ((expiresDays == null) ? "" : ";expires=" + date.toGMTString());
+		document.cookie = name + "=" + escape(value) + ((expiresDays == null) ? "" : ";expires=" + date.toGMTString());
 	},
 
 	getCookie: function(name) {
