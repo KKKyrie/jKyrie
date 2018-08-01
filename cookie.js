@@ -17,13 +17,20 @@ var cookieUtil = {
 
 	getCookie: function(name) {
 		var cookies = document.cookie;
-		var start = cookies.indexOf(name + "=");
+		name = name + '=';
+		var start = cookies.indexOf(name);
+		var isFirstCookie = true;
+		
+		if (start !== 0) {
+			isFirstCookie = false;
+			start = cookies.indexOf(`; ${name}`);
+		}
 
 		if (start === -1) {
 			return "";
 		}
 
-		start = start + name.length + 1;
+		start = start + name.length + (isFirstCookie ? 0 : 2);
 		var end = cookies.indexOf(";", start);
 
 		//是最后一个键值对（末尾没有分号）
